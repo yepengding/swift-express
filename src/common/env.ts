@@ -1,5 +1,10 @@
 import dotenv from "dotenv";
 
+/**
+ * Environment Configuration
+ *
+ * @author Yepeng Ding
+ */
 dotenv.config();
 
 

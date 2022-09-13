@@ -1,47 +1,64 @@
-import {JsonController, Param, Body, Get, Post} from 'routing-controllers';
+import {Body, Get, JsonController, Param, Post} from 'routing-controllers';
 import {UserService} from "../services/UserService";
 import {Service} from "typedi";
-import {User} from "../models/User";
-import {IsNotEmpty, IsPositive} from "class-validator";
+import {User} from "../models/entities/User";
+import {CreateUserBody} from "../models/dtos/User.dto";
+import {Assert} from "../common/assertion/Assert";
 
-export class CreateUserBody {
-    @IsNotEmpty()
-    public firstname: string;
 
-    @IsNotEmpty()
-    public lastname: string;
-
-    @IsPositive()
-    public age: number;
-}
-
+/**
+ * User Controller
+ *
+ * @author Yepeng Ding
+ */
 @JsonController('/users')
 @Service()
 export class UserController {
 
     constructor(
+        /**
+         * Inject user service
+         */
         private userService: UserService
     ) {
     }
 
+    /**
+     * Get all users.
+     *
+     */
     @Get()
-    getAll() {
-        return this.userService.findAll();
+    async getAll() {
+        return await this.userService.findAll();
     }
 
+    /**
+     * Get one user by id.
+     *
+     * @param id
+     */
     @Get('/:id')
-    getOne(@Param('id') id: number) {
-        return this.userService.retrieve(id)
+    async getOneById(@Param('id') id: number) {
+        const user = await this.userService.retrieve(id);
+        console.log(user)
+        Assert.notNull(user, `User (id: ${id}) does not exist.`);
+        console.log("asserted")
+        return user;
     }
 
+    /**
+     * Create user.
+     *
+     * @param body
+     */
     @Post()
-    create(@Body() body: CreateUserBody) {
+    async create(@Body() body: CreateUserBody) {
         const user = new User();
         user.firstname = body.firstname;
         user.lastname = body.lastname;
         user.age = body.age;
 
-        return this.userService.create(user);
+        return await this.userService.create(user);
     }
 
 }
