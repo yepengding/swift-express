@@ -17,8 +17,12 @@
     "typeorm",
     "routing-controllers"
   ],
-  "author": "Yepeng Ding <yepengding@g.ecc.u-tokyo.ac.jp>",
   "license": "MIT",
+  "author": "Yepeng Ding <yepengding@g.ecc.u-tokyo.ac.jp> (yepengding.github.io/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yepengding/swift-express.git"
+  },
   "dependencies": {
     "body-parser": "^1.20.0",
     "class-transformer": "^0.5.1",
