@@ -36,4 +36,3 @@ export const env = {
     }
 }
 
-console.log(env.app.endpoint)
