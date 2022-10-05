@@ -1,13 +1,13 @@
 {
   "name": "swift-express",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A swift TypeScript-based Express web framework.",
-  "main": "src/app.ts",
+  "main": "src/main.ts",
   "scripts": {
     "build": "yarn tsc",
-    "start": "node dist/app.js",
+    "start": "node dist/main.js",
     "watch": "yarn tsc --watch",
-    "dev": "concurrently -k \"yarn tsc --watch\" \"nodemon -q dist/app.js\"",
+    "dev": "concurrently -k \"yarn tsc --watch\" \"nodemon -q dist/main.js\"",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
   },

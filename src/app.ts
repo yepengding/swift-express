@@ -18,8 +18,8 @@ import {ErrorHandler} from "./common/error-handling/ErrorHandler";
  *
  * @author Yepeng Ding
  */
-class App {
-    private app: Application
+export class App {
+    private readonly app: Application;
 
     constructor() {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -77,5 +77,4 @@ class App {
     }
 }
 
-const app = new App();
-app.run();
+
