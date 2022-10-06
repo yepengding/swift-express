@@ -31,8 +31,7 @@ export const env = {
         database: process.env.DB_DATABASE || 'db',
         synchronize: process.env.DB_SYNCHRONIZE === "true",
         logging: process.env.DB_LOGGING === "true",
-        logger: process.env.DB_LOGGER ? process.env.DB_LOGGER : "advanced-console",
-        entities: [process.env.DB_ENTITY_PATH || "dist/models/*.js"]
+        logger: process.env.DB_LOGGER ? process.env.DB_LOGGER : "advanced-console"
     }
 }
 
