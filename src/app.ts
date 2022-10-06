@@ -12,6 +12,7 @@ import {validationMetadatasToSchemas} from "class-validator-jsonschema";
 import morgan from "morgan";
 import {logger, stream} from "./logger";
 import {ErrorHandler} from "./common/error-handling/ErrorHandler";
+import * as http from "http";
 
 /**
  * App Entrance
@@ -26,7 +27,7 @@ export class App {
         this.app = createExpressServer({
             cors: true,
             classTransformer: true,
-            controllers: [path.join(__dirname + '/controllers/*.js')],
+            controllers: [path.join(__dirname + '/controllers/*.{ts,js}')],
             middlewares: [ErrorHandler],
             defaultErrorHandler: false
         });
@@ -36,9 +37,11 @@ export class App {
 
     /**
      * Run application
+     *
+     * @return HTTP Server
      */
-    public run() {
-        this.app.listen(env.app.port, () => {
+    public run(): http.Server {
+        return this.app.listen(env.app.port, () => {
             logger.info(`🚀 App is running on port ${env.app.port}`);
         });
     }
@@ -49,7 +52,7 @@ export class App {
      */
     private initializeCore() {
         // Initialize logging
-        this.app.use(morgan(env.log.format, { stream }));
+        this.app.use(morgan(env.log.format, {stream}));
 
         // Set TypeDI container for routing-controllers and class-validator
         routingUseContainer(Container);

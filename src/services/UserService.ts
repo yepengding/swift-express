@@ -1,5 +1,5 @@
 import {Service} from 'typedi';
-import {UserRepository} from "../repositories/UserRepository";
+import {getUserRepository} from "../repositories/UserRepository";
 import {User} from "../models/entities/User";
 
 /**
@@ -11,15 +11,15 @@ import {User} from "../models/entities/User";
 export class UserService {
 
     public async findAll(): Promise<User[]> {
-        return await UserRepository.find();
+        return (await getUserRepository()).find();
     }
 
     public async retrieve(id: number): Promise<User | null> {
-        return await UserRepository.findOneBy({id});
+        return (await getUserRepository()).findOneBy({id});
     }
 
     public async create(user: User): Promise<User> {
-        return await UserRepository.save(user);
+        return (await getUserRepository()).save(user);
     }
 
 }

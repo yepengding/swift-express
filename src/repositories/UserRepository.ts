@@ -1,4 +1,4 @@
-import AppDataSource from "../db";
+import {getAppDataSource} from "../db";
 import {User} from '../models/entities/User';
 
 /**
@@ -6,4 +6,7 @@ import {User} from '../models/entities/User';
  *
  * @author Yepeng Ding
  */
-export const UserRepository = AppDataSource.getRepository(User).extend({});
+export const getUserRepository = async () => {
+    const dataSource = await getAppDataSource();
+    return dataSource.getRepository(User).extend({});
+}
