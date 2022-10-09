@@ -4,6 +4,7 @@ import {Service} from "typedi";
 import {User} from "../models/entities/User";
 import {CreateUserBody} from "../models/dtos/User.dto";
 import {Assert} from "../common/assertion/Assert";
+import {HttpErrorCode} from "../common/error-handling/ErroCode";
 
 
 /**
@@ -41,7 +42,7 @@ export class UserController {
     async getOneById(@Param('id') id: number) {
         const user = await this.userService.retrieve(id);
         console.log(user)
-        Assert.notNull(user, `User (id: ${id}) does not exist.`);
+        Assert.notNull(user, HttpErrorCode.NOT_FOUND, `User (id: ${id}) does not exist.`);
         console.log("asserted")
         return user;
     }
