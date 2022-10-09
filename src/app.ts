@@ -15,7 +15,7 @@ import {ErrorHandler} from "./common/error-handling/ErrorHandler";
 import * as http from "http";
 
 /**
- * App Entrance
+ * Application
  *
  * @author Yepeng Ding
  */
@@ -74,7 +74,7 @@ export class App {
 
         const spec = routingControllersToSpec(storage, {}, {
             components: {schemas},
-            info: {title: 'Swift Express API', version: '0.1.0'},
+            info: {title: 'Swift Express API', version: '0.1.3'},
         })
         this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(spec));
     }

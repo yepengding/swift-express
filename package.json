@@ -7,7 +7,7 @@
     "build": "yarn tsc",
     "start": "node dist/main.js",
     "watch": "yarn tsc --watch",
-    "dev": "concurrently -k \"yarn tsc --watch\" \"nodemon -q dist/main.js\"",
+    "dev": "concurrently -k \"yarn tsc --watch\" \"sleep 2.5 && nodemon -q dist/main.js\"",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
   },
